@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing mosnter</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.27.0/dist/full.css" rel="stylesheet" type="text/css" />
+     <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <header>
+        <section>
+            <h1 class="text-center text-3xl">Typing mosnter_</h1>
+           <br>
+           <h4 class="text-center">time : <span id="timing" class="text-red-600">0</span> seconds</h4>
+           <br>
+           <h1 class="text-center text-3xl text-warning">Let's Practice typing test</h1>
+        </section>
+    </header>
+    <main>
+        <section class="border h-20 w-8/12 mx-auto rounded-lg my-6 text-center">
+            <p id="paragraph" class="text-xl mt-2"></p>
+        </section>
+        <section class="flex justify-center">
+            <div id="input" class="input input-accent w-8/12 h-20 text-xl"></div>
+        </section>
+        <div id="time-count" class="text-4xl flex hidden  justify-center justify-items-center top-30 z-30">
+            
+        </div>
+        <section class="text-center mt-5">
+            <button onclick="start()" id="start" class="btn btn-warning">START</button>
+        </section>
+        <section id="modal">
+            
+        </section>
+        <section class="mt-5">
+            <div class="grid grid-cols-3 gap-3" id="history">
+              
+            
+            </div>
+        </section>
+    </main>
+
+
+    <script src="./word.js"></script>
+    <script src="./history.js"></script>
+    <script src="./javascript.js"></script>
+</body>
+</html>
