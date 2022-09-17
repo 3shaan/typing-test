@@ -1,22 +1,31 @@
-// Random sentance making 
-const WordLength = googleDictionary.length;
-const randomWord = googleDictionary[Math.floor(Math.random()*WordLength)];
-let wordArray = [];
-for(let i = 0; i<(Math.random()*10) ; i++){
-    const randomObj = googleDictionary[Math.floor(Math.random()*WordLength)];
-    //  console.log(randomObj.word);
-     const randomWord = randomObj.word;
-     wordArray.push(randomWord);
-}
-const randomSentance = wordArray.join(' ')
-// random santance 
 const Santance = document.getElementById('paragraph');
-Santance.innerText= randomSentance;
 const startBtn = document.getElementById('start');
 const inputFuild = document.getElementById('input');
-const modal = document.getElementById('modal');
-const modalBtn = document.getElementById('modal-btn')
+const newModal = document.getElementById('my-modal-3');
+const modalBtn = document.getElementById('modal-btn');
+const ModalBody = document.getElementById('modal-body');
 const timing = document.getElementById('timing');
+
+
+const loadData =async ()=>{
+    const res = await fetch(`https://type.fit/api/quotes`);
+    const data = await res.json();
+    randomSen(data);
+}
+
+loadData();
+
+const randomSen = (data)=>{
+    const dataLenght = data.length;
+        const randomSentance = data[Math.floor(Math.random()*dataLenght)];
+        // console.log(randomSentance);
+        Santance.innerText = randomSentance.text;
+
+}
+const modalOpen =()=>{
+    newModal.click();
+  }
+
 
 // typing correction 
 let userText = '';
@@ -45,6 +54,7 @@ const typeController =(e)=>{
     // oparetion complete 
     if(userText === Santance.innerText){
         gameOver();
+        
     }
 }
 
@@ -81,24 +91,21 @@ const start = ()=>{
 };
 
 const gameOver =()=>{
-    modal.style.display = 'block';
     // time count 
     const finishTime = new Date().getTime();
     const totalTime = Math.round((finishTime - startTime)/1000);
-    modal.innerHTML = `
-    <div class="mx-auto p-5 border w-96 shadow-xl rounded-md bg-white">
-    <div class="mt-3 text-center">
-        <h3 class="text-lg leading-6 font-medium text-gray-900">Successful!</h3>
-        <div class="mt-2 px-7 py-3">
-            <p class="text-sm text-gray-500">
-                Your mistake : ${error}.
-            </p>
-            <p> Total time spend : ${totalTime}</p>
-        </div>
-        <button onclick="modalClose()" class="btn btn-warning">OKAY</button>
-    </div>
-    </div>
+    ModalBody.innerHTML=`
+     <div class="mt-2 px-7 py-3">
+        <p class="text-sm text-gray-500">
+           Your mistake : <span class="text-red-600">${error}</span>.
+       </p>
+       <p> Total time spend : <span class="text-semibold">${totalTime}</span> Seconds</p>
+     </div>
+    
     `
+
+    modalOpen();
+    
     addHistory(Santance.innerText ,error, totalTime)
 
     userText='';
@@ -107,7 +114,7 @@ const gameOver =()=>{
 
 }
 const modalClose = ()=>{
-    modal.style.display='none';
+    // modal.style.display='none';
     window.location.reload();
 }
 

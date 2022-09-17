@@ -31,8 +31,17 @@
         <section class="text-center mt-5">
             <button onclick="start()" id="start" class="btn btn-warning">START</button>
         </section>
-        <section id="modal">
-            
+        <section>
+            <label onclick="modalOpen()" for="my-modal-3" class="modal-button"></label>
+            <input type="checkbox" id="my-modal-3" class="modal-toggle" />
+                <div class="modal">
+                <div class="modal-box relative">
+                    <label onclick="modalClose()" for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                   <div id="modal-body">
+
+                   </div>
+                </div>
+                </div>
         </section>
         <section class="mt-5">
             <div class="grid grid-cols-3 gap-3" id="history">
